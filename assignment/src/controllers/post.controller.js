@@ -23,7 +23,7 @@ router.post("/", authenticate, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const products = await Product.find().lean().exec();
+  const products = await Product.find().populate({path: "user", select : "name"}).lean().exec();
 
   return res.send(products);
 });
