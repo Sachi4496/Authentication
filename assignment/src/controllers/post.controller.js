@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Product = require("../models/product.model");
+const Product = require("../models/post.model");
 
 const authenticate = require("../middlewares/authenticate");
 
@@ -11,9 +11,8 @@ router.post("/", authenticate, async (req, res) => {
     const user = req.user;
 
     const product = await Product.create({
-      name: req.body.name,
-      price: req.body.price,
-      image_urls: ["www.google.com"],
+      title: req.body.title,
+      body: req.body.body,
       user: user.user._id,
     });
 
